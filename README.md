@@ -30,7 +30,7 @@ days
   01
     index.ts      -- Exports "part" functions
     input.ts      -- Input copied into here
-    part-one.ts   -- Deafult export is function giving solution for part one
+    part-one.ts   -- Default export is function giving solution for part one
     part-two.ts   -- Default export is function giving solution for part two
   02
   03
@@ -46,11 +46,11 @@ localhost:3000/api/days/[DAY]
 
 while the server is running to get the results of the functions for each part.
 
-## Lib
+## `lib`
 
 A `lib` directory is present at the root, so useful functions or
 code shared between days can be kept there. `lib` is aliased as `~/lib`,
-so you can import things from it easily:
+so you can import things from it easily:gs
 
 ```ts
 import { sum } from '~/lib'; // `sum` is exported through lib/index.ts
