@@ -1,6 +1,7 @@
 #!/bin/zsh
 rm -R "days"
 mkdir "days"
+touch "days/index.ts"
 
 rm -R "pages/api/days"
 mkdir "pages/api/days"
@@ -42,16 +43,27 @@ export { default as partOne } from './part-one'
 export { default as partTwo } from './part-two'
 EOT
 
-  touch "pages/api/days/${(l:2::0:)i}.ts"
-  cat <<EOT >> "pages/api/days/${(l:2::0:)i}.ts"
-import { partOne, partTwo } from '~/days/${(l:2::0:)i}'
+  echo "export * as day${(l:2::0:)i} from './${(l:2::0:)i}'" >> "days/index.ts"
+done
+
+touch "pages/api/days/[day].ts"
+cat <<EOT >> "pages/api/days/[day].ts"
+import * as days from '~/days/index'
 
 export default async function handler(req, res) {
-  res.status(200).json({
-    day: ${i},
-    partOne: await partOne(),
-    partTwo: await partTwo(),
-  })
+  const day = req.query.day
+  const paddedDay = day.padStart(2, '0')
+
+  try {
+    const { partOne, partTwo } = days[\`day${paddedDay}\`]
+    res.status(200).json({
+      day: paddedDay,
+      partOne: await partOne(),
+      partTwo: await partTwo(),
+    })
+  }
+  catch {
+    res.status(404).json({ error: \`No day ${paddedDay}\` })
+  }
 }
 EOT
-done
