@@ -28,11 +28,14 @@ The directory structure looks like this:
 ```
 days
   01
-    index.ts // Exports "part" functions
-    input.ts // Input copied into here
-    part-one.ts // Deafult export is function giving solution for part one
-    part-two.ts // Default export is function giving solution for part two
+    index.ts      -- Exports "part" functions
+    input.ts      -- Input copied into here
+    part-one.ts   -- Deafult export is function giving solution for part one
+    part-two.ts   -- Default export is function giving solution for part two
+  02
+  03
   ...
+  25
 ```
 
 For a particular day's solution, you can visit
