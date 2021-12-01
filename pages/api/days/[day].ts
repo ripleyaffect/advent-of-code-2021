@@ -1,4 +1,4 @@
-import * as days from '~/days/index'
+import * as days from '~/days'
 
 export default async function handler(req, res) {
   const day = parseInt(req.query.day).toString()

@@ -1,5 +1,5 @@
 export default `
-INPUT
-GOES
-HERE
+1
+2
+3
 `.trim().split('\n')

@@ -1,5 +1,5 @@
 import INPUT from './input'
 
-const partOne = (input) => null
+const partOne = (input: string[]) => null
 
 export default () => partOne(INPUT)
