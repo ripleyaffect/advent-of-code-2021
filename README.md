@@ -45,3 +45,15 @@ localhost:3000/api/days/[DAY]
 ```
 
 while the server is running to get the results of the functions for each part.
+
+## Lib
+
+A `lib` directory is present at the root, so useful functions or
+code shared between days can be kept there. `lib` is aliased as `~/lib`,
+so you can import things from it easily:
+
+```ts
+import { sum } from '~/lib'; // `sum` is exported through lib/index.ts
+// or
+import sum from '~/lib/sum';
+```
