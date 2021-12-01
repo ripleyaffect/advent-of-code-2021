@@ -16,8 +16,4 @@ For a particular day's solution, you can visit
 localhost:3000/api/days/[DAY]
 ```
 
-while the server is running. `[DAY]` is zero-padded on the left if the number is < 10, so day 1 is
-
-```
-localhost:3000/api/days/01
-```
+while the server is running.
