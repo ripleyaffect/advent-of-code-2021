@@ -1,7 +1,7 @@
 import * as days from '~/days/index'
 
 export default async function handler(req, res) {
-  const day = req.query.day
+  const day = parseInt(req.query.day).toString()
   const paddedDay = day.padStart(2, '0')
 
   try {
