@@ -5,7 +5,7 @@ export type Instruction = {
   mag: number,
 }
 
-export type Mag = {
+export type Position = {
   x: number,
   y: number,
 }
@@ -19,7 +19,7 @@ export const parseInstructions = (input: string[]): Instruction[] => input.map(
 
 const ingestInstructions = (
   instructions: Instruction[]
-): Mag => instructions.reduce(
+): Position => instructions.reduce(
   ({ x, y }, { dir, mag }) => {
     switch (dir) {
       case 'down':
@@ -33,9 +33,11 @@ const ingestInstructions = (
   { x: 0, y: 0 }
 )
 
-export const getMagValue = ({ x, y }: Mag): number => Math.abs(x * y)
+export const getPostitionMagnitude = (
+  { x, y }: Position
+): number => Math.abs(x * y)
 
-const partOne = (input: string[]) => getMagValue(
+const partOne = (input: string[]) => getPostitionMagnitude(
   ingestInstructions(
     parseInstructions(input)
   )

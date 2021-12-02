@@ -1,11 +1,16 @@
 import INPUT from './input'
-import { Instruction, Mag, getMagValue, parseInstructions } from './part-one'
+import {
+  Instruction,
+  Position,
+  getPostitionMagnitude,
+  parseInstructions,
+} from './part-one'
 
-type Mag2 = Mag & { aim: number }
+type PositionWithAim = Position & { aim: number }
 
 const ingestInstructions = (
   instructions: Instruction[]
-): Mag2 => instructions.reduce(
+): PositionWithAim => instructions.reduce(
   ({ aim, x, y }, { dir, mag }) => {
     switch (dir) {
       case 'down':
@@ -19,7 +24,7 @@ const ingestInstructions = (
   { aim: 0, x: 0, y: 0 }
 )
 
-const partTwo = (input: string[]) => getMagValue(
+const partTwo = (input: string[]) => getPostitionMagnitude(
   ingestInstructions(
     parseInstructions(input)
   )
