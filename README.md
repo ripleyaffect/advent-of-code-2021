@@ -50,7 +50,7 @@ while the server is running to get the results of the functions for each part.
 
 A `lib` directory is present at the root, so useful functions or
 code shared between days can be kept there. `lib` is aliased as `~/lib`,
-so you can import things from it easily:gs
+so you can import things from it easily:
 
 ```ts
 import { sum } from '~/lib'; // `sum` is exported through lib/index.ts
