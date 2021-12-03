@@ -9,7 +9,10 @@ import {
   parseInput,
 } from './part-one'
 
-const findRating = (
+/**
+ * Recursively find the bits for a rating
+ */
+const findRatingBits = (
   bitArrays: Bit[][],
   getFilterBit: (bits: Bit[]) => Bit,
   bitIndex = 0
@@ -18,7 +21,7 @@ const findRating = (
 
   const filterBit = getFilterBit(zip(...bitArrays)[bitIndex])
 
-  return findRating(
+  return findRatingBits(
     bitArrays.filter(value => value[bitIndex] === filterBit),
     getFilterBit,
     bitIndex + 1
@@ -28,10 +31,10 @@ const findRating = (
 // Value Finders
 
 const findOxGenRating = (bitArrays: Bit[][]) =>
-  bitsToNumber(findRating(bitArrays, getMostCommonBit))
+  bitsToNumber(findRatingBits(bitArrays, getMostCommonBit))
 
 const findCO2Rating = (bitArrays: Bit[][]) =>
-  bitsToNumber(findRating(bitArrays, getLeastCommonBit))
+  bitsToNumber(findRatingBits(bitArrays, getLeastCommonBit))
 
 const partTwo = (input: string[]) => {
   const bitArrays = parseInput(input)

@@ -4,7 +4,8 @@ import INPUT from './input'
 
 export type Bit = 0 | 1
 
-export const parseInput = input => input.map(line => line.split('').map(Number))
+export const parseInput = input =>
+  input.map(line => line.split('').map(Number))
 
 export const getMostCommonBit = (bits: Bit[]): Bit =>
   bits.filter(Boolean).length >= (bits.length / 2) ? 1 : 0

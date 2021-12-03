@@ -6,4 +6,6 @@
  *   sum(1, 2, 3) // => 6
  *   sum(...[1, 2, 3]) // => 6
  */
-export default (...args) => args.reduce((acc, curr) => acc + curr, 0)
+const sum = (...args: number[]) => args.reduce((acc, curr) => acc + curr, 0)
+
+export default sum

@@ -1,4 +1,10 @@
-const zip = (...args: any[]) => {
+/**
+ * Zips `args` into arrays
+ *
+ * @param args
+ * @returns Array of zipped arrays
+ */
+const zip = (...args: any[][]): any[][] => {
   const len = Math.min(...args.map(arg => arg.length))
   return args.reduce(
     (acc: any[][], curr: any[]) => {
