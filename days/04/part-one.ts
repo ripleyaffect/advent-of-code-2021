@@ -12,25 +12,23 @@ const getBoardCompleted = (board: Board, called: number[]): boolean =>
   !!board.filter(rowcol => !difference(rowcol, called).length).length
 
 export const solve = (
-  boards,
-  callable,
-  getIsFinished,
+  boards: Board[],
+  callable: number[],
+  getIsFinished: (solved: Board[], unsolved: Board[]) => boolean,
   called = [],
   allSolved = []
-) => {
+): { solved: Board[], called: number[] } => {
   const [ solved, unsolved ] = partition(
     boards,
     (board) => getBoardCompleted(board, called)
   )
 
   // End condition
-  if (getIsFinished(solved, unsolved)) return [
-    [
-      ...allSolved,
-      ...solved,
-    ],
-    called
-  ]
+  if (getIsFinished(solved, unsolved))
+    return {
+      solved: [ ...allSolved, ...solved ],
+      called
+    }
 
   // Tail recurse 🐶
   return solve(
@@ -38,19 +36,21 @@ export const solve = (
     callable,
     getIsFinished,
     callable.slice(0, called.length + 1),
-    [
-      ...allSolved,
-      ...solved,
-    ]
+    [ ...allSolved, ...solved ]
   )
 }
 
-const getBoardValues = (board: Board) => unique(board.reduce(
-  (acc, curr) => acc.concat(curr),
-  []
-))
+const getBoardValues = (board: Board): number[] => unique(
+  board.reduce(
+    (acc, curr) => acc.concat(curr),
+    []
+  )
+)
 
-export const getBoardSolution = (board: Board, called) => sum(
+export const getBoardSolution = (
+  board: Board,
+  called: number[]
+): number => sum(
   ...difference(getBoardValues(board), called)
 ) * called[called.length - 1]
 
@@ -58,15 +58,15 @@ export const getBoardSolution = (board: Board, called) => sum(
 const createBoards = (inputLines: string[]): Board[] => {
   const boards = []
 
+  // Parse the board rows
   while (inputLines.length) {
-    // Parse the board rows
     const boardRows = inputLines.slice(
       0, BOARD_SIZE
     ).map(
       line => line.trim().split(/\s+/).map(Number)
     )
 
-    // Create the board
+    // Create the board with rows and columns
     boards.push([ ...boardRows, ...zip(...boardRows) ])
 
     // Go to the next board
@@ -86,7 +86,7 @@ export const parseInput = (input: string[]) => ({
 const partOne = (input: string[]) => {
   const { callable, boards } = parseInput(input);
 
-  const [solved, called] = solve(
+  const { solved, called } = solve(
     boards,
     callable,
     (solved) => !!solved.length // End after first solution found
