@@ -1,5 +1,6 @@
 export { default as difference } from './difference'
 export { default as partition } from './partition'
+export { default as permutations } from './permutations'
 export { default as range } from './range'
 export { default as sum } from './sum'
 export { default as window } from './window'
