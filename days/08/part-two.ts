@@ -1,7 +1,6 @@
 import { permutations } from '~/lib'
 
 import INPUT from './input'
-
 import { parseInput } from './part-one'
 
 const LETTERS = 'abcdefg'.split('')
